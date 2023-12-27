@@ -272,4 +272,4 @@ def removeAllergensFn(allergen_ids):
         cnx.close()
         
         print('allergen removed')
-    return Trueit
+    return True

@@ -49,7 +49,7 @@ class CheckAllergies(Resource):
                         # url = "https://www.carrefouruae.com/mafuae/en/"+ link
                         
                         
-                        ingredientsList = getProductIngredients(link)
+                        ingredientsList = getIngredientsCarrefore(link)
                         
                         # print(ingredientsList)
                         
@@ -77,7 +77,7 @@ class CheckAllergies(Resource):
                     url = "https://www.carrefouruae.com/mafuae/en/"+ product_link
                     
                     
-                    ingredientsList = getProductIngredients(url)
+                    ingredientsList = getIngredientsCarrefore(url)
                     
                     for ingredient in ingredientsList:
                         for allergen in allergen_names:

@@ -8,8 +8,6 @@ def connectDB():
                                 database='allergen_blocker')
     return cnx
 
-
-
 def getAllergens(user_id):
     cnx = connectDB()
     cursor = cnx.cursor()
@@ -46,8 +44,6 @@ def getAllergens(user_id):
     
     return allergens
 
-
-
 def getUserAllergensIDs(user_id):
     cnx = connectDB()
     cursor = cnx.cursor()
@@ -68,8 +64,6 @@ def getUserAllergensIDs(user_id):
         allergen_ids.append(row[1])
     
     return allergen_ids
-
-
 
 def getAllergensNames(allergen_ids):
     allergen_names = []
@@ -92,8 +86,7 @@ def getAllergensNames(allergen_ids):
     
     return allergen_names
 
-
-def getProductIngredients(url):
+def getIngredientsCarrefore(url):
     
     ingredientsList = []
     
@@ -153,7 +146,6 @@ def addUserAllergens(user_id, allergens):
         print('allergen added')
     return True
 
-
 def removeUserAllergens(user_id, allergens):
     for allergen in allergens:
         # remove allergen from user
@@ -187,7 +179,6 @@ def getUserRole(user_id):
     
     return result[0][0]
 
-
 def addUser(user_id):
     cnx = connectDB()
     cursor = cnx.cursor()
@@ -216,8 +207,6 @@ def addUser(user_id):
     # return the role assigned
     return 'user'
 
-
-
 def addAllergensFn(allergens):
     for allergen in allergens:
         # add allergen to user
@@ -232,7 +221,6 @@ def addAllergensFn(allergens):
         
         print('allergen added')
     return True
-
 
 def searchAllergensFn(allergen_name):
     cnx = connectDB()
@@ -256,7 +244,6 @@ def searchAllergensFn(allergen_name):
         
         
     return allergens
-
 
 def removeAllergensFn(allergen_ids):
     print(allergen_ids)

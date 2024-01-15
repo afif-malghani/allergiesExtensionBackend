@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def connectDB():
-    cnx = mysql.connector.connect(user='test', password='Test123!',
+    cnx = mysql.connector.connect(user='app', password='Password123!',
                                 host='localhost',
                                 database='allergen_blocker')
     return cnx

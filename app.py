@@ -175,6 +175,20 @@ class removeAllergens(Resource):
         return {'message': 'success'}
 
 
+# test routes to be removed in production
+class testAmazonScrapper(Resource):
+    def post(self):
+        # get URL from request
+        url = request.json['url']
+        print("got url: ", url)
+        return {'ingredients': getIngredientsAmazon(url)}
+
+# test routes to be removed in production
+class testWalmartScrapper(Resource):
+    def post(self):
+        url = request.json['url']
+        return {'ingredients': getIngredientsWalmart(url)}
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -189,6 +203,14 @@ api.add_resource(getList, '/allergens-all')
 api.add_resource(addAllergens, '/add-allergens')
 api.add_resource(searchAllergens, '/search-allergens')
 api.add_resource(removeAllergens, '/remove-allergens')
+
+
+# test routes to be removed in production
+api.add_resource(testAmazonScrapper, '/test-amazon')
+api.add_resource(testWalmartScrapper, '/test-walmart')
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

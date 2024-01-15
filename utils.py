@@ -131,6 +131,50 @@ def getIngredientsCarrefore(url):
     
     return ingredientsList
 
+def getIngredientsAmazon(url):
+    
+    print("getting ingredients from amazon")
+    
+    # get page form the url
+    page = requests.get(url)
+    
+    # parse the page
+    soup = BeautifulSoup(page.text, 'html.parser')
+    
+    print("soup: ", soup)
+    
+    # find div with id 'important-information'
+    important_info_div = soup.find(id='important-information')
+    
+    print("important info div: ", important_info_div)
+    
+    # if the div is found look for the 'Ingredients' tag
+    if important_info_div:
+        # find the 'Ingredients' tag
+        ingredient_tag = important_info_div.find(text='Ingredients')
+        
+        # if the tag is found, find the parent div
+        if ingredient_tag:
+            parent_div = ingredient_tag.find_parent()
+            
+            # if the parent div is found, find the child div
+            if parent_div:
+                child_div = parent_div.find('div')
+                
+                # if the child div is found, get its text
+                if child_div:
+                    ingredients = child_div.get_text(strip=True)
+                    
+                    # if the text is not empty, split it by comma and return
+                    if ingredients:
+                        return ingredients.split(',')
+    else:
+        return []
+
+def getIngredientsWalmart(url):
+    pass
+
+
 def addUserAllergens(user_id, allergens):
     for allergen in allergens:
         # add allergen to user
